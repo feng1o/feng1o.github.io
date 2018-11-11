@@ -8,7 +8,8 @@ subtitle: welcome !
 description: let's go,
 keywords: internet
 author: Lufeel 
-language: zh-Hans
+#language: zh-Hans #中文
+language: 
 timezone: Asia/Shanghai
 
 # URL

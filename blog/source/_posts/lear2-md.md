@@ -2,6 +2,7 @@
 title: hexo在windows上发布错误修复
 date: 2018-11-11 01:02:39
 tags:
+- hexo
 ---
 # 1. err
 '''

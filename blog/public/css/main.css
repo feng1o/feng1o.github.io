@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #770eb9;
+  background: #cfc21c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1832,11 +1832,13 @@ pre .javascript .function {
   margin-top: 20px;
   font-size: 14px;
   font-weight: 600;
+  text-align: left;
 }
 .links-of-blogroll-list {
   margin: 0;
   padding: 0;
   list-style: none;
+  text-align: left;
 }
 .links-of-blogroll-item {
   padding: 2px 10px;
