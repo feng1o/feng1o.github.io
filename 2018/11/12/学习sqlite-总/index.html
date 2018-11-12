@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="SQLite,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="let&apos;s go,">
-<meta name="keywords" content="internet">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lufeel Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="1.如何学？12a.inside sqlite &amp;lt;&amp;lt;SQLite Database System --详细&amp;gt;&amp;gt;b.官方文档，architecture of sqlite；接着再看一下&amp;quot;Atomic Commit In SQLite&amp;quot;, 2.参考资料知乎参考">
+<meta name="keywords" content="SQLite">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习sqlite-总">
+<meta property="og:url" content="http://yoursite.com/2018/11/12/学习sqlite-总/index.html">
 <meta property="og:site_name" content="Lufeel Blog">
-<meta property="og:description" content="let&apos;s go,">
+<meta property="og:description" content="1.如何学？12a.inside sqlite &amp;lt;&amp;lt;SQLite Database System --详细&amp;gt;&amp;gt;b.官方文档，architecture of sqlite；接着再看一下&amp;quot;Atomic Commit In SQLite&amp;quot;, 2.参考资料知乎参考">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-12T15:35:19.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lufeel Blog">
-<meta name="twitter:description" content="let&apos;s go,">
+<meta name="twitter:title" content="学习sqlite-总">
+<meta name="twitter:description" content="1.如何学？12a.inside sqlite &amp;lt;&amp;lt;SQLite Database System --详细&amp;gt;&amp;gt;b.官方文档，architecture of sqlite；接着再看一下&amp;quot;Atomic Commit In SQLite&amp;quot;, 2.参考资料知乎参考">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/">
+  <link rel="canonical" href="http://yoursite.com/2018/11/12/学习sqlite-总/">
 
 
 
 
 
-  <title>Archive | Lufeel Blog</title>
+  <title>学习sqlite-总 | Lufeel Blog</title>
   
 
 
@@ -144,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -248,247 +249,169 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/学习sqlite-总/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lufeel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lufeel Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">学习sqlite-总</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-12T23:30:56+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 6 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/12/学习sqlite-总/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/12/学习sqlite-总/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
+             <span id="/2018/11/12/学习sqlite-总/" class="leancloud_visitors" data-flag-title="学习sqlite-总">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/12/学习sqlite-总/" itemprop="url">
-              
-                <span itemprop="name">学习sqlite-总</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-12T23:30:56+08:00" content="2018-11-12">
-          11-12
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/11/blog-todo/" itemprop="url">
-              
-                <span itemprop="name">blog-todo</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-11T02:22:29+08:00" content="2018-11-11">
-          11-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/11/lear3-md/" itemprop="url">
-              
-                <span itemprop="name">lear3.md</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-11T02:13:46+08:00" content="2018-11-11">
-          11-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/11/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-11T02:09:05+08:00" content="2018-11-11">
-          11-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="1-如何学？"><a href="#1-如何学？" class="headerlink" title="1.如何学？"></a>1.如何学？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.inside sqlite &lt;&lt;SQLite Database System --详细&gt;&gt;</span><br><span class="line">b.官方文档，architecture of sqlite；接着再看一下&quot;Atomic Commit In SQLite&quot;,</span><br></pre></td></tr></table></figure>
+<h2 id="2-参考资料"><a href="#2-参考资料" class="headerlink" title="2.参考资料"></a>2.参考资料</h2><p><a href="https://www.zhihu.com/question/22819578" target="_blank" rel="noopener">知乎参考</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/11/lear2-md/" itemprop="url">
-              
-                <span itemprop="name">hexo在windows上发布错误修复</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-11T01:02:39+08:00" content="2018-11-11">
-          11-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/10/learn1-md/" itemprop="url">
-              
-                <span itemprop="name">learn1.md</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-10T20:29:30+08:00" content="2018-11-10">
-          11-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQLite/" rel="tag"># SQLite</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/11/blog-todo/" rel="next" title="blog-todo">
+                <i class="fa fa-chevron-left"></i> blog-todo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -496,6 +419,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -516,8 +446,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -619,6 +558,22 @@
         </div>
       </div></section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-如何学？"><span class="nav-number">1.</span> <span class="nav-text">1.如何学？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-参考资料"><span class="nav-number">2.</span> <span class="nav-text">2.参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -759,6 +714,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
