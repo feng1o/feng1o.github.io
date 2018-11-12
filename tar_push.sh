@@ -1,5 +1,5 @@
 #!/bin/bash
-dt=`date  +%Y-%m-%d`
+dt=`date  +%Y-%m-%d-%H`
 echo $dt
 file="blog-${dt}.tgz"
 echo $file
