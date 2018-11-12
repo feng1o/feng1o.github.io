@@ -81,5 +81,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:feng1o/feng1o.github.io.git 
+  repo: http://github.com/feng1o/feng1o.github.io.git 
   branch: master

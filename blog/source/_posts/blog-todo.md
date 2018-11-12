@@ -74,9 +74,3 @@ header.post-header {
   +mobile() { width: 100% !important; } 
   }
 ```
-
-# 11.折叠 
-[ck](https://www.cnblogs.com/woshimrf/p/hexo-fold-block.html)
-
-# 12.code highlight
-[ck](https://blog.csdn.net/melordljm/article/details/51991389)
