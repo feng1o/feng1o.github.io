@@ -405,155 +405,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/1.go-json/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lufeel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lufeel Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/25/1.go-json/" itemprop="url">gogo1_json</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-25T22:40:41+08:00">
-                2018-11-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/25/1.go-json/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/25/1.go-json/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/11/25/1.go-json/" class="leancloud_visitors" data-flag-title="gogo1_json">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://cizixs.com/2016/12/19/golang-json-guide/" target="_blank" rel="noopener">quote</a></p>
-<h3 id="1-tag"><a href="#1-tag" class="headerlink" title="1.tag"></a>1.tag</h3><pre><code>在定义 struct 字段的时候，可以在字段后面添加 tag，来控制 encode/decode 的过程：是否要 decode/encode 某个字段，JSON 中的字段名称是什么。
-</code></pre><p>三种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-：不要解析这个字段</span><br><span class="line">omitempty：当字段为空（默认值）时，不要解析这个字段。比如 false、0、nil、长度为 0 的 array，map，slice，string</span><br><span class="line">FieldName：当解析 json 的时候，使用这个名字</span><br><span class="line">(只会解析大写开头的字段)</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-动态解析"><a href="#2-动态解析" class="headerlink" title="2.动态解析"></a>2.动态解析</h3><blockquote>
-<p>Q1.都写struct比较麻烦？怎么办？ 动态解析<br>Q2.使用simplejson，</p>
-</blockquote>
-<h3 id="3-延迟解析：json-RawMessage"><a href="#3-延迟解析：json-RawMessage" class="headerlink" title="3.延迟解析：json.RawMessage"></a>3.延迟解析：json.RawMessage</h3><blockquote>
-<p>  Q1.在解析的时候，还可以把某部分先保留为 JSON 数据不要解析，等到后面得到更多信息的时候再去解析</p>
-</blockquote>
-<h3 id="4-和-stream-中-JSON-打交道"><a href="#4-和-stream-中-JSON-打交道" class="headerlink" title="4.和 stream 中 JSON 打交道"></a>4.和 stream 中 JSON 打交道</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/学习sqlite-总/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1503,7 +1354,7 @@ at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1525,7 +1376,7 @@ at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -1557,7 +1408,7 @@ at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
 	<!-- 原来的左侧 <h3 class="widget-title"> Tags </h3> -->
     		<div id="myCanvasContainer" class="widget tagcloud">
         	<canvas width="250" height="250" id="resCanvas" style="width=100%">
-            		<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-channel-goroutine/">go channel goroutine</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-json/">go, json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/home/">home</a><span class="tag-list-count">1</span></li></ul> </canvas>
+            		<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/home/">home</a><span class="tag-list-count">1</span></li></ul> </canvas>
     	</div>
 	
 
