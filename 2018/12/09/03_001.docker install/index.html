@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="SQLite,">
+  <meta name="keywords" content="docker,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1.如何学？12a.inside sqlite &amp;lt;&amp;lt;SQLite Database System --详细&amp;gt;&amp;gt;b.官方文档，architecture of sqlite；接着再看一下&amp;quot;Atomic Commit In SQLite&amp;quot;, 2.参考资料知乎参考 3.简单怎么写个dbhow to build a database 4.sqlite代码 foss">
-<meta name="keywords" content="SQLite">
+<meta name="description" content="1.bookzhihu第一本Docker书 修订版 2016Docker——容器与容器云 浙大sel的Docker开发指南 每天5分钟玩转Docker容器技术 CloudMan 著  2.自己动手写Docker阿里的go实现docker引擎； 适合已经了解docker 是什么，又想深入探查docker 实现原理的童鞋。">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习sqlite-总">
-<meta property="og:url" content="http://yoursite.com/2018/11/12/学习sqlite-总/index.html">
+<meta property="og:title" content="docker">
+<meta property="og:url" content="http://yoursite.com/2018/12/09/03_001.docker install/index.html">
 <meta property="og:site_name" content="Lufeel Blog">
-<meta property="og:description" content="1.如何学？12a.inside sqlite &amp;lt;&amp;lt;SQLite Database System --详细&amp;gt;&amp;gt;b.官方文档，architecture of sqlite；接着再看一下&amp;quot;Atomic Commit In SQLite&amp;quot;, 2.参考资料知乎参考 3.简单怎么写个dbhow to build a database 4.sqlite代码 foss">
+<meta property="og:description" content="1.bookzhihu第一本Docker书 修订版 2016Docker——容器与容器云 浙大sel的Docker开发指南 每天5分钟玩转Docker容器技术 CloudMan 著  2.自己动手写Docker阿里的go实现docker引擎； 适合已经了解docker 是什么，又想深入探查docker 实现原理的童鞋。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-13T15:55:53.150Z">
+<meta property="og:updated_time" content="2019-06-15T14:12:56.801Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习sqlite-总">
-<meta name="twitter:description" content="1.如何学？12a.inside sqlite &amp;lt;&amp;lt;SQLite Database System --详细&amp;gt;&amp;gt;b.官方文档，architecture of sqlite；接着再看一下&amp;quot;Atomic Commit In SQLite&amp;quot;, 2.参考资料知乎参考 3.简单怎么写个dbhow to build a database 4.sqlite代码 foss">
+<meta name="twitter:title" content="docker">
+<meta name="twitter:description" content="1.bookzhihu第一本Docker书 修订版 2016Docker——容器与容器云 浙大sel的Docker开发指南 每天5分钟玩转Docker容器技术 CloudMan 著  2.自己动手写Docker阿里的go实现docker引擎； 适合已经了解docker 是什么，又想深入探查docker 实现原理的童鞋。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/12/学习sqlite-总/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/09/03_001.docker install/">
 
 
 
 
 
-  <title>学习sqlite-总 | Lufeel Blog</title>
+  <title>docker | Lufeel Blog</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/学习sqlite-总/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/03_001.docker install/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lufeel">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">学习sqlite-总</h1>
+          <h1 class="post-title" itemprop="name headline">docker</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-12T23:30:56+08:00">
-                2018-11-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-09T23:26:10+08:00">
+                2018-12-09
               </time>
             
 
@@ -311,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/12/学习sqlite-总/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/12/学习sqlite-总/" itemprop="commentCount"></span>
+                <a href="/2018/12/09/03_001.docker install/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/03_001.docker install/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2018/11/12/学习sqlite-总/" class="leancloud_visitors" data-flag-title="学习sqlite-总">
+             <span id="/2018/12/09/03_001.docker install/" class="leancloud_visitors" data-flag-title="docker">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,12 +351,11 @@
       
 
       
-        <h2 id="1-如何学？"><a href="#1-如何学？" class="headerlink" title="1.如何学？"></a>1.如何学？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.inside sqlite &lt;&lt;SQLite Database System --详细&gt;&gt;</span><br><span class="line">b.官方文档，architecture of sqlite；接着再看一下&quot;Atomic Commit In SQLite&quot;,</span><br></pre></td></tr></table></figure>
-<h2 id="2-参考资料"><a href="#2-参考资料" class="headerlink" title="2.参考资料"></a>2.参考资料</h2><p><a href="https://www.zhihu.com/question/22819578" target="_blank" rel="noopener">知乎参考</a></p>
-<h2 id="3-简单怎么写个db"><a href="#3-简单怎么写个db" class="headerlink" title="3.简单怎么写个db"></a>3.简单怎么写个db</h2><p><a href="https://cstack.github.io/db_tutorial/" target="_blank" rel="noopener">how to build a database</a></p>
-<h2 id="4-sqlite代码-fossi使用"><a href="#4-sqlite代码-fossi使用" class="headerlink" title="4.sqlite代码 fossi使用"></a>4.sqlite代码 fossi使用</h2><p><a href="https://www.fossil-scm.org/index.html/doc/trunk/www/quickstart.wiki" target="_blank" rel="noopener">fossil</a>  Amalgamation是合并到一个cpp文件了</p>
-<h2 id="5-看"><a href="#5-看" class="headerlink" title="5.看"></a>5.看</h2><p><a href="https://www.sqlite.org/arch.html" target="_blank" rel="noopener">Architecture of SQLite</a></p>
-
+        <h3 id="1-book"><a href="#1-book" class="headerlink" title="1.book"></a>1.book</h3><p><a href="https://www.zhihu.com/question/27227492" target="_blank" rel="noopener">zhihu</a><br>第一本Docker书 修订版 2016<br>Docker——容器与容器云 浙大sel的<br>Docker开发指南</p>
+<p>每天5分钟玩转Docker容器技术 CloudMan 著 </p>
+<h3 id="2-自己动手写Docker"><a href="#2-自己动手写Docker" class="headerlink" title="2.自己动手写Docker"></a>2.自己动手写Docker</h3><pre><code>阿里的go实现docker引擎；
+适合已经了解docker 是什么，又想深入探查docker 实现原理的童鞋。
+</code></pre>
       
     </div>
     
@@ -373,7 +372,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SQLite/" rel="tag"># SQLite</a>
+            <a href="/tags/docker/" rel="tag"># docker</a>
           
         </div>
       
@@ -386,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/11/blog-todo/" rel="next" title="blog-todo">
-                <i class="fa fa-chevron-left"></i> blog-todo
+              <a href="/2018/12/09/2.go-channel-routine/" rel="next" title="2.go-chanel">
+                <i class="fa fa-chevron-left"></i> 2.go-chanel
               </a>
             
           </div>
@@ -396,8 +395,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/09/2.go-channel-routine/" rel="prev" title="2.go-chanel">
-                2.go-chanel <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/09/03_002.docker example/" rel="prev" title="docker">
+                docker <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -575,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-如何学？"><span class="nav-number">1.</span> <span class="nav-text">1.如何学？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-参考资料"><span class="nav-number">2.</span> <span class="nav-text">2.参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-简单怎么写个db"><span class="nav-number">3.</span> <span class="nav-text">3.简单怎么写个db</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-sqlite代码-fossi使用"><span class="nav-number">4.</span> <span class="nav-text">4.sqlite代码 fossi使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-看"><span class="nav-number">5.</span> <span class="nav-text">5.看</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-book"><span class="nav-number">1.</span> <span class="nav-text">1.book</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-自己动手写Docker"><span class="nav-number">2.</span> <span class="nav-text">2.自己动手写Docker</span></a></li></ol></div>
             
 
           </div>
