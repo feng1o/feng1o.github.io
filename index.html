@@ -404,6 +404,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/03_002.第一个容器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lufeel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lufeel Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/09/03_002.第一个容器/" itemprop="url">docker</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-09T23:26:10+08:00">
+                2018-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/09/03_002.第一个容器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/03_002.第一个容器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/09/03_002.第一个容器/" class="leancloud_visitors" data-flag-title="docker">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-docker守护进程"><a href="#1-docker守护进程" class="headerlink" title="1.docker守护进程"></a>1.docker守护进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">早期版本 docker daemon -H tcp://ip:port -H ...</span><br><span class="line">后期dockerd</span><br></pre></td></tr></table></figure>
+<h3 id="2-第一个容器"><a href="#2-第一个容器" class="headerlink" title="2.第一个容器"></a>2.第一个容器</h3><pre><code>docker -run -i -t centos /bin/bash
+  本地无，docker hub下载镜像
+  会创建一个新的容器，有自己的net、ip、网桥； 然后进入一个新的bash页
+</code></pre><h3 id="3-使用第一个容器"><a href="#3-使用第一个容器" class="headerlink" title="3.使用第一个容器"></a>3.使用第一个容器</h3><pre><code>a.主机名
+    hostname 
+    cat /etc/hosts
+b.ip信息 docker 母鸡
+    ip a
+    docker inspect hostName
+c.安装软件包
+    yum install vim
+</code></pre><h3 id="2-自己动手写Docker"><a href="#2-自己动手写Docker" class="headerlink" title="2.自己动手写Docker"></a>2.自己动手写Docker</h3><pre><code>阿里的go实现docker引擎；
+适合已经了解docker 是什么，又想深入探查docker 实现原理的童鞋。
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/3.docker-guide/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -464,150 +618,6 @@
           
           
              <span id="/2018/12/09/3.docker-guide/" class="leancloud_visitors" data-flag-title="docker">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-book"><a href="#1-book" class="headerlink" title="1.book"></a>1.book</h3><p><a href="https://www.zhihu.com/question/27227492" target="_blank" rel="noopener">zhihu</a><br>第一本Docker书 修订版 2016<br>Docker——容器与容器云 浙大sel的<br>Docker开发指南</p>
-<p>每天5分钟玩转Docker容器技术 CloudMan 著 </p>
-<h3 id="2-自己动手写Docker"><a href="#2-自己动手写Docker" class="headerlink" title="2.自己动手写Docker"></a>2.自己动手写Docker</h3><pre><code>阿里的go实现docker引擎；
-适合已经了解docker 是什么，又想深入探查docker 实现原理的童鞋。
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/03_002.docker example/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lufeel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lufeel Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/09/03_002.docker example/" itemprop="url">docker</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-09T23:26:10+08:00">
-                2018-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/09/03_002.docker example/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/03_002.docker example/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/12/09/03_002.docker example/" class="leancloud_visitors" data-flag-title="docker">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
