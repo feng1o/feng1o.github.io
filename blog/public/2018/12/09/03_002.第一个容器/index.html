@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Lufeel Blog">
 <meta property="og:description" content="1.docker守护进程12早期版本 docker daemon -H tcp://ip:port -H ...后期dockerd 2.第一个容器123456docker run --restart=alawys[on-failure:5] --name test -i -t centos /bin/bashdocker update --restart=always &amp;lt;CONTAINER">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-21T15:17:47.154Z">
+<meta property="og:updated_time" content="2019-09-14T15:00:36.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一个容器">
 <meta name="twitter:description" content="1.docker守护进程12早期版本 docker daemon -H tcp://ip:port -H ...后期dockerd 2.第一个容器123456docker run --restart=alawys[on-failure:5] --name test -i -t centos /bin/bashdocker update --restart=always &amp;lt;CONTAINER">
@@ -367,7 +367,7 @@ docker logs --tail - -f  -t name
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[22-root@localhost /var/lib/docker]# ll</span><br><span class="line">total 4</span><br><span class="line">drwx------. 2 root root   24 Jun 13 00:15 builder</span><br><span class="line">drwx------. 4 root root   92 Jun 13 00:15 buildkit</span><br><span class="line">drwx------. 4 root root  150 Jun 16 00:07 containers</span><br><span class="line">drwx------. 3 root root   22 Jun 13 00:15 image</span><br><span class="line">drwxr-x---. 3 root root   19 Jun 13 00:15 network</span><br><span class="line">drwx------. 8 root root 4096 Jun 19 23:15 overlay2</span><br><span class="line">drwx------. 4 root root   32 Jun 13 00:15 plugins</span><br><span class="line">drwx------. 2 root root    6 Jun 19 23:15 runtimes</span><br><span class="line">drwx------. 2 root root    6 Jun 13 00:15 swarm</span><br><span class="line">drwx------. 2 root root    6 Jun 19 23:15 tmp</span><br><span class="line">drwx------. 2 root root    6 Jun 13 00:15 trust</span><br><span class="line">drwx------. 2 root root   25 Jun 13 00:15 volumes</span><br><span class="line">[23-root@localhost /var/lib/docker]# cd containers/</span><br><span class="line">[24-root@localhost /var/lib/docker/containers]# ll</span><br><span class="line">total 0</span><br><span class="line">drwx------. 4 root root 237 Jun 19 23:15 901ab0e98300cc163901f94214f5ee69c962c685e098cf350db2c2d26c01ec9e</span><br><span class="line">drwx------. 4 root root 237 Jun 19 23:15 a6bc5cee2d394136c6f45d5ade6cad44a4a8be4cc851c3534c2a054b5acfbcc5</span><br><span class="line">[25-root@localhost /var/lib/docker/containers</span><br></pre></td></tr></table></figure>
 </code></pre><h3 id="10-删除"><a href="#10-删除" class="headerlink" title="10.删除"></a>10.删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm name / [`sudo docker ps -q -a`]</span><br></pre></td></tr></table></figure>
 <h3 id="11-cmd"><a href="#11-cmd" class="headerlink" title="11.cmd"></a>11.cmd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rmi</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
-
+<h3 id="12-容器内运行进程"><a href="#12-容器内运行进程" class="headerlink" title="12.容器内运行进程"></a>12.容器内运行进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker exec -d name cmd[touch /data/test_exec]</span><br><span class="line"></span><br><span class="line">[14-root@localhost /var/lib/docker]# cd containers/</span><br><span class="line">[15-root@localhost /var/lib/docker/containers</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -397,8 +397,8 @@ docker logs --tail - -f  -t name
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/09/05_002.go-channel-routine/" rel="next" title="2.go-chanel">
-                <i class="fa fa-chevron-left"></i> 2.go-chanel
+              <a href="/2018/12/09/03_001.docker install/" rel="next" title="docker">
+                <i class="fa fa-chevron-left"></i> docker
               </a>
             
           </div>
@@ -407,7 +407,7 @@ docker logs --tail - -f  -t name
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/09/03_001.docker install/" rel="prev" title="docker">
+              <a href="/2018/12/09/03_000.docker-guide/" rel="prev" title="docker">
                 docker <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -489,7 +489,7 @@ docker logs --tail - -f  -t name
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -586,7 +586,7 @@ docker logs --tail - -f  -t name
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-docker守护进程"><span class="nav-number">1.</span> <span class="nav-text">1.docker守护进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-第一个容器"><span class="nav-number">2.</span> <span class="nav-text">2.第一个容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用第一个容器"><span class="nav-number">3.</span> <span class="nav-text">3.使用第一个容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-启动容器"><span class="nav-number">4.</span> <span class="nav-text">4.启动容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-附着到容器"><span class="nav-number">5.</span> <span class="nav-text">5.附着到容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-守护容器"><span class="nav-number">6.</span> <span class="nav-text">6.守护容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-docker-logs"><span class="nav-number">7.</span> <span class="nav-text">7.docker logs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-docker-Log驱动"><span class="nav-number">8.</span> <span class="nav-text">8.docker Log驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-观察"><span class="nav-number">9.</span> <span class="nav-text">9.观察</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-删除"><span class="nav-number">10.</span> <span class="nav-text">10.删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-cmd"><span class="nav-number">11.</span> <span class="nav-text">11.cmd</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-docker守护进程"><span class="nav-number">1.</span> <span class="nav-text">1.docker守护进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-第一个容器"><span class="nav-number">2.</span> <span class="nav-text">2.第一个容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用第一个容器"><span class="nav-number">3.</span> <span class="nav-text">3.使用第一个容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-启动容器"><span class="nav-number">4.</span> <span class="nav-text">4.启动容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-附着到容器"><span class="nav-number">5.</span> <span class="nav-text">5.附着到容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-守护容器"><span class="nav-number">6.</span> <span class="nav-text">6.守护容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-docker-logs"><span class="nav-number">7.</span> <span class="nav-text">7.docker logs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-docker-Log驱动"><span class="nav-number">8.</span> <span class="nav-text">8.docker Log驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-观察"><span class="nav-number">9.</span> <span class="nav-text">9.观察</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-删除"><span class="nav-number">10.</span> <span class="nav-text">10.删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-cmd"><span class="nav-number">11.</span> <span class="nav-text">11.cmd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-容器内运行进程"><span class="nav-number">12.</span> <span class="nav-text">12.容器内运行进程</span></a></li></ol></div>
             
 
           </div>
@@ -606,7 +606,7 @@ docker logs --tail - -f  -t name
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

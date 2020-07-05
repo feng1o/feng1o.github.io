@@ -263,6 +263,864 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/07_001.kafka理解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lufeel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lufeel Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/07/07_001.kafka理解/" itemprop="url">07_001.kafka理解.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-07T19:06:23+08:00">
+                2019-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/07/07_001.kafka理解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/07/07_001.kafka理解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/10/07/07_001.kafka理解/" class="leancloud_visitors" data-flag-title="07_001.kafka理解.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-kafka"><a href="#1-kafka" class="headerlink" title="1.kafka"></a>1.kafka</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">消息队列 CKafka 的数据持久化主要通过如下原理实现：</span><br><span class="line"></span><br><span class="line">Topic 中 Partition 存储分布</span><br><span class="line">    在消息队列 CKafka 文件存储中，同一 Topic 有多个不同 Partition，每个 Partition 在物理上对应一个文件夹，用户存储该 Partition 中的消息和索引文件。例如，创建两个 Topic，Topic1 中存在5个 Partition，Topic2 中存在10个 Partition，则整个集群上会相应生成5 + 10 = 15个文件夹。</span><br><span class="line"></span><br><span class="line">Partition 中文件存储方式</span><br><span class="line">    Partition 物理上由多个 segment 组成，每个 segment 大小相等，顺序读写，快速删除过期 segment, 提高磁盘利用率。</span><br></pre></td></tr></table></figure>
+<h4 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">partition: </span><br><span class="line">    一个物理上分区的概念，一个 Topic 可以包含一个或者多个 partition，CKafka 以 partition 作为分配单位</span><br></pre></td></tr></table></figure>
+<h2 id="2-水平扩展"><a href="#2-水平扩展" class="headerlink" title="2.水平扩展"></a>2.水平扩展</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一个 Topic 可包含多个 Partition，分布在一个或多个 Broker 上。</span><br><span class="line">一个消费者可订阅其中一个或者多个 Partition。</span><br><span class="line">Producer 负责将消息均衡分配到对应的 Partition。</span><br><span class="line">Partition 内消息是有序的。</span><br></pre></td></tr></table></figure>
+<h4 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">消费组:</span><br><span class="line">    可以对消费组订阅 topic 进行 offset 重置，对历史消息进行重新消费</span><br></pre></td></tr></table></figure>
+<h2 id="3-Consumer-Group"><a href="#3-Consumer-Group" class="headerlink" title="3.Consumer Group"></a>3.Consumer Group</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">消息队列 CKafka 不删除已消费的消息。</span><br><span class="line">任何 Consumer 必须属于一个 Group。</span><br><span class="line">同一 Consumer Group 中的多个 Consumer 不同时消费同一个 Partition。</span><br><span class="line">不同 Group 同时消费同一条消息，多元化（队列模式、发布订阅模式）。</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/07_000.kafka/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lufeel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lufeel Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/07/07_000.kafka/" itemprop="url">07_000.kafka.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-07T19:05:35+08:00">
+                2019-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/07/07_000.kafka/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/07/07_000.kafka/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/10/07/07_000.kafka/" class="leancloud_visitors" data-flag-title="07_000.kafka.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/03_005.network-md/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lufeel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lufeel Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/21/03_005.network-md/" itemprop="url">03_005.network.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-21T18:59:31+08:00">
+                2019-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/21/03_005.network-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/21/03_005.network-md/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/09/21/03_005.network-md/" class="leancloud_visitors" data-flag-title="03_005.network.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-docker之间网络"><a href="#1-docker之间网络" class="headerlink" title="1.docker之间网络"></a>1.docker之间网络</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a.docker 内部网络 不灵活 </span><br><span class="line">b.1.9后 docker networking  [v]</span><br><span class="line">        不同宿主机</span><br><span class="line">        停止  重启 无序关系链接</span><br><span class="line">        运行顺序无关</span><br><span class="line">c.docker链接， 通信抽象层</span><br></pre></td></tr></table></figure>
+<h2 id="2-创建docker-networking"><a href="#2-创建docker-networking" class="headerlink" title="2.创建docker networking"></a>2.创建docker networking</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a.docker network create xx  </span><br><span class="line">    docker run  --net=xx  --name=bbb。。。 指定网络；</span><br><span class="line">    会在/etc/hosts里有配置，会有bbb.xx作为域名</span><br><span class="line">b.docker network inspect xx</span><br><span class="line">c.overlay网络支持跨宿主机</span><br><span class="line">d.docker network connect xx  contianernamexx</span><br><span class="line">e.docker network disconnect xx continerx</span><br></pre></td></tr></table></figure>
+<h2 id="3-docker特权模式-–privileged-docker内在跑docker必须"><a href="#3-docker特权模式-–privileged-docker内在跑docker必须" class="headerlink" title="3.docker特权模式 –privileged  docker内在跑docker必须"></a>3.docker特权模式 –privileged  docker内在跑docker必须</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/03_004.volumne卷-md/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lufeel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lufeel Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/21/03_004.volumne卷-md/" itemprop="url">03_004.volumne卷.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-21T18:59:09+08:00">
+                2019-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/21/03_004.volumne卷-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/21/03_004.volumne卷-md/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/09/21/03_004.volumne卷-md/" class="leancloud_visitors" data-flag-title="03_004.volumne卷.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-volume是什么"><a href="#1-volume是什么" class="headerlink" title="1.volume是什么"></a>1.volume是什么</h2><h2 id="2-volume-用途"><a href="#2-volume-用途" class="headerlink" title="2.volume 用途"></a>2.volume 用途</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.multi docker共享代码</span><br><span class="line">b.changed frequency， so do not want build</span><br><span class="line">c.test and delop at the same time</span><br></pre></td></tr></table></figure>
+<h2 id="3-how-to-config"><a href="#3-how-to-config" class="headerlink" title="3.how to config"></a>3.how to config</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v  $PWD/xxx:/var/xx【：ro/rw可选】</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/03_003.构建image-md/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lufeel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lufeel Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/21/03_003.构建image-md/" itemprop="url">03_003.构建image.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-21T15:16:32+08:00">
+                2019-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/21/03_003.构建image-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/21/03_003.构建image-md/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/09/21/03_003.构建image-md/" class="leancloud_visitors" data-flag-title="03_003.构建image.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-构建"><a href="#1-构建" class="headerlink" title="1.构建"></a>1.构建</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker commit</span><br><span class="line">docker build + dockerfile</span><br></pre></td></tr></table></figure>
+<h2 id="2-docker-image设置"><a href="#2-docker-image设置" class="headerlink" title="2.docker image设置"></a>2.docker image设置</h2><p><a href="https://www.daocloud.io/mirror" target="_blank" rel="noopener">daocloud比较快</a><br><a href="http://mirrors.ustc.edu.cn/help/dockerhub.html?highlight=docker#id3" target="_blank" rel="noopener">ustc中科大的</a></p>
+<h2 id="3-docker-commit"><a href="#3-docker-commit" class="headerlink" title="3.docker commit"></a>3.docker commit</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m &apos;comomment&apos; -a &apos;author&apos;  [id]  user/reigtname</span><br></pre></td></tr></table></figure>
+<h2 id="4-dockerfile"><a href="#4-dockerfile" class="headerlink" title="4.dockerfile"></a>4.dockerfile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker build -t=&quot;仓库/镜像名:tag&quot; . </span><br><span class="line">docker build -t=&quot;仓库/镜像名:tag&quot;  -f 指定dockerfile</span><br><span class="line">docker build --no-cache -t=&quot;仓库/镜像名:tag&quot;  git@github.com:xx/xx的dockerfile</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># Version: 0.1</span><br><span class="line">FROM ubuntu:14.04   层</span><br><span class="line">MAINTAINER lf &quot;xx.com&quot;  层...</span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install  -y nginx </span><br><span class="line">RUN echo &quot;hi dockerfile&quot; &gt; /usr/share/nginx/html/index.html</span><br><span class="line"></span><br><span class="line">CMD  [&quot;/bin/bash&quot;, &quot;ls&quot;, &quot; -l /&quot;]  [运行时执行run是build。cmd只能一条]</span><br><span class="line">ENTRYPOINT  [&quot;/usr/bin/nginx&quot;，&quot;-g&quot; &quot; daemon off;&quot;] [不会被run的覆盖，和cmd不一样]</span><br><span class="line">ENV  XX_PAHT /home/xx</span><br><span class="line">VOLUME --TODO:</span><br><span class="line">USER</span><br><span class="line">ADD / COPY </span><br><span class="line">LABEL</span><br><span class="line">ARG  --build-arg x=b  部分预定义args变量</span><br><span class="line">ONBUILD</span><br><span class="line"></span><br><span class="line">EXPOSE 8082</span><br></pre></td></tr></table></figure>
+<h2 id="5-other-cmd"><a href="#5-other-cmd" class="headerlink" title="5.other cmd"></a>5.other cmd</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker history id 看build命令</span><br></pre></td></tr></table></figure>
+<h2 id="6-port和宿主机绑定"><a href="#6-port和宿主机绑定" class="headerlink" title="6.port和宿主机绑定"></a>6.port和宿主机绑定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.随机选32678 -- 61000</span><br><span class="line">b.指定： -p</span><br><span class="line"></span><br><span class="line">c.docker ps -l  或 docker port id  port</span><br><span class="line">d.docker run -P 会把dockerfile里expose的端口对外公开</span><br></pre></td></tr></table></figure>
+<h2 id="7-push-docker-hub"><a href="#7-push-docker-hub" class="headerlink" title="7.push docker hub"></a>7.push docker hub</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<h2 id="8-local-registry"><a href="#8-local-registry" class="headerlink" title="8.local registry"></a>8.local registry</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">加tag： docker tag id registryhost:port /name/仓库</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/06_000.rust-guid/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lufeel">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lufeel Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/03/06_000.rust-guid/" itemprop="url">06_000.rust.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-03T00:04:26+08:00">
+                2019-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/03/06_000.rust-guid/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/03/06_000.rust-guid/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/08/03/06_000.rust-guid/" class="leancloud_visitors" data-flag-title="06_000.rust.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-book"><a href="#1-book" class="headerlink" title="1.book"></a>1.book</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">深入迁出rust</span><br><span class="line">rust编程之道</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/05-003-web-server-md/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -282,7 +1140,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/06/05-003-web-server-md/" itemprop="url">05_003.web_server.md</a></h1>
+                <a class="post-title-link" href="/2019/07/06/05-003-web-server-md/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -322,7 +1180,7 @@
 
           
           
-             <span id="/2019/07/06/05-003-web-server-md/" class="leancloud_visitors" data-flag-title="05_003.web_server.md">
+             <span id="/2019/07/06/05-003-web-server-md/" class="leancloud_visitors" data-flag-title="">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -355,7 +1213,10 @@
       
         
           
-            
+            <hr>
+<p>title: 05_003.web_server.md<br>date: 2019-07-06 21:46:56<br>tags:<br>— go<br>— webserver</p>
+<h3 id="1-functions"><a href="#1-functions" class="headerlink" title="1.functions"></a>1.functions</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.长链接</span><br><span class="line">b.认证</span><br><span class="line">c.扩展</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -640,151 +1501,7 @@
 <p>每天5分钟玩转Docker容器技术 CloudMan 著 </p>
 <h3 id="2-自己动手写Docker"><a href="#2-自己动手写Docker" class="headerlink" title="2.自己动手写Docker"></a>2.自己动手写Docker</h3><pre><code>阿里的go实现docker引擎；
 适合已经了解docker 是什么，又想深入探查docker 实现原理的童鞋。
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/03_001.docker install/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lufeel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lufeel Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/09/03_001.docker install/" itemprop="url">docker</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-09T23:26:10+08:00">
-                2018-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/09/03_001.docker install/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/03_001.docker install/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/12/09/03_001.docker install/" class="leancloud_visitors" data-flag-title="docker">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-book"><a href="#1-book" class="headerlink" title="1.book"></a>1.book</h3><p><a href="https://www.zhihu.com/question/27227492" target="_blank" rel="noopener">zhihu</a><br>第一本Docker书 修订版 2016<br>Docker——容器与容器云 浙大sel的<br>Docker开发指南</p>
-<p>每天5分钟玩转Docker容器技术 CloudMan 著 </p>
-<h3 id="2-自己动手写Docker"><a href="#2-自己动手写Docker" class="headerlink" title="2.自己动手写Docker"></a>2.自己动手写Docker</h3><pre><code>阿里的go实现docker引擎；
-适合已经了解docker 是什么，又想深入探查docker 实现原理的童鞋。
-</code></pre>
+</code></pre><h2 id="3-faq"><a href="#3-faq" class="headerlink" title="3.faq"></a>3.faq</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.docker里怎么配置，修改docker里的文件，指定路径，配置？比如修改nginx配置</span><br><span class="line"></span><br><span class="line">b.docker网络问题，怎么对外服务？</span><br></pre></td></tr></table></figure>
           
         
       
@@ -940,783 +1657,8 @@ docker logs --tail - -f  -t name
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[22-root@localhost /var/lib/docker]# ll</span><br><span class="line">total 4</span><br><span class="line">drwx------. 2 root root   24 Jun 13 00:15 builder</span><br><span class="line">drwx------. 4 root root   92 Jun 13 00:15 buildkit</span><br><span class="line">drwx------. 4 root root  150 Jun 16 00:07 containers</span><br><span class="line">drwx------. 3 root root   22 Jun 13 00:15 image</span><br><span class="line">drwxr-x---. 3 root root   19 Jun 13 00:15 network</span><br><span class="line">drwx------. 8 root root 4096 Jun 19 23:15 overlay2</span><br><span class="line">drwx------. 4 root root   32 Jun 13 00:15 plugins</span><br><span class="line">drwx------. 2 root root    6 Jun 19 23:15 runtimes</span><br><span class="line">drwx------. 2 root root    6 Jun 13 00:15 swarm</span><br><span class="line">drwx------. 2 root root    6 Jun 19 23:15 tmp</span><br><span class="line">drwx------. 2 root root    6 Jun 13 00:15 trust</span><br><span class="line">drwx------. 2 root root   25 Jun 13 00:15 volumes</span><br><span class="line">[23-root@localhost /var/lib/docker]# cd containers/</span><br><span class="line">[24-root@localhost /var/lib/docker/containers]# ll</span><br><span class="line">total 0</span><br><span class="line">drwx------. 4 root root 237 Jun 19 23:15 901ab0e98300cc163901f94214f5ee69c962c685e098cf350db2c2d26c01ec9e</span><br><span class="line">drwx------. 4 root root 237 Jun 19 23:15 a6bc5cee2d394136c6f45d5ade6cad44a4a8be4cc851c3534c2a054b5acfbcc5</span><br><span class="line">[25-root@localhost /var/lib/docker/containers</span><br></pre></td></tr></table></figure>
 </code></pre><h3 id="10-删除"><a href="#10-删除" class="headerlink" title="10.删除"></a>10.删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm name / [`sudo docker ps -q -a`]</span><br></pre></td></tr></table></figure>
 <h3 id="11-cmd"><a href="#11-cmd" class="headerlink" title="11.cmd"></a>11.cmd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rmi</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
-
+<h3 id="12-容器内运行进程"><a href="#12-容器内运行进程" class="headerlink" title="12.容器内运行进程"></a>12.容器内运行进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker exec -d name cmd[touch /data/test_exec]</span><br><span class="line"></span><br><span class="line">[14-root@localhost /var/lib/docker]# cd containers/</span><br><span class="line">[15-root@localhost /var/lib/docker/containers</span><br></pre></td></tr></table></figure>
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/05_002.go-channel-routine/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lufeel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lufeel Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/09/05_002.go-channel-routine/" itemprop="url">2.go-chanel</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-09T20:01:07+08:00">
-                2018-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/09/05_002.go-channel-routine/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/05_002.go-channel-routine/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/12/09/05_002.go-channel-routine/" class="leancloud_visitors" data-flag-title="2.go-chanel">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-channel"><a href="#1-channel" class="headerlink" title="1.channel"></a>1.channel</h3><pre><code>csp模型：
-</code></pre><p><a href="https://zhuanlan.zhihu.com/p/51777369" target="_blank" rel="noopener">ck</a>；可以看看推荐</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/10_000学习sqlite-总/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lufeel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lufeel Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/12/10_000学习sqlite-总/" itemprop="url">学习sqlite-总</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-12T23:30:56+08:00">
-                2018-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/12/10_000学习sqlite-总/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/12/10_000学习sqlite-总/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/11/12/10_000学习sqlite-总/" class="leancloud_visitors" data-flag-title="学习sqlite-总">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-如何学？"><a href="#1-如何学？" class="headerlink" title="1.如何学？"></a>1.如何学？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.inside sqlite &lt;&lt;SQLite Database System --详细&gt;&gt;</span><br><span class="line">b.官方文档，architecture of sqlite；接着再看一下&quot;Atomic Commit In SQLite&quot;,</span><br></pre></td></tr></table></figure>
-<h2 id="2-参考资料"><a href="#2-参考资料" class="headerlink" title="2.参考资料"></a>2.参考资料</h2><p><a href="https://www.zhihu.com/question/22819578" target="_blank" rel="noopener">知乎参考</a></p>
-<h2 id="3-简单怎么写个db"><a href="#3-简单怎么写个db" class="headerlink" title="3.简单怎么写个db"></a>3.简单怎么写个db</h2><p><a href="https://cstack.github.io/db_tutorial/" target="_blank" rel="noopener">how to build a database</a></p>
-<h2 id="4-sqlite代码-fossi使用"><a href="#4-sqlite代码-fossi使用" class="headerlink" title="4.sqlite代码 fossi使用"></a>4.sqlite代码 fossi使用</h2><p><a href="https://www.fossil-scm.org/index.html/doc/trunk/www/quickstart.wiki" target="_blank" rel="noopener">fossil</a>  Amalgamation是合并到一个cpp文件了</p>
-<h2 id="5-看"><a href="#5-看" class="headerlink" title="5.看"></a>5.看</h2><p><a href="https://www.sqlite.org/arch.html" target="_blank" rel="noopener">Architecture of SQLite</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/02_02.blog_to_do/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lufeel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lufeel Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/11/02_02.blog_to_do/" itemprop="url">blog-todo</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-11T02:22:29+08:00">
-                2018-11-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/11/02_02.blog_to_do/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/11/02_02.blog_to_do/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/11/11/02_02.blog_to_do/" class="leancloud_visitors" data-flag-title="blog-todo">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-加music-background"><a href="#1-加music-background" class="headerlink" title="1.加music background"></a>1.加music background</h1><p><a href="https://blog.csdn.net/yjwan521/article/details/80899992" target="_blank" rel="noopener">example</a></p>
-<h1 id="2-blog-todo"><a href="#2-blog-todo" class="headerlink" title="2.blog todo"></a>2.blog todo</h1><p><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">tutor</a><br><a href="https://lruihao.cn/" target="_blank" rel="noopener">side bar</a><br><a href="http://blog.lightina.cn/" target="_blank" rel="noopener">layout</a></p>
-<h1 id="3-tags-categories"><a href="#3-tags-categories" class="headerlink" title="3.tags categories"></a>3.tags categories</h1><p><a href="https://blog.csdn.net/KnownAll/article/details/81360235" target="_blank" rel="noopener">expamle</a></p>
-<h1 id="4-tags-cloud"><a href="#4-tags-cloud" class="headerlink" title="4.tags cloud"></a>4.tags cloud</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 没有修改packages.json，直接安装,修改部分会hexo g报错</span><br><span class="line">1.npm install hexo-tag-cloud@^2.0.* --save</span><br><span class="line">2.next/layout/_macro/sidebar.yml</span><br><span class="line">	js文件会导致hexo g失败，参见github url</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/MikeCoder/hexo-tag-cloud/blob/master/README.ZH.md" target="_blank" rel="noopener">github</a></p>
-<h1 id="5-comment"><a href="#5-comment" class="headerlink" title="5.comment"></a>5.comment</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.https://valine.js.org/quickstart.html 注册，然后F.； 会生成appid，key</span><br><span class="line">2.修改 vi themes/next/_config.yml ； 修改valine 开启true，把key加上</span><br><span class="line">3.最后！记得在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去</span><br></pre></td></tr></table></figure>
-<h1 id="6-开启字、阅读时间统计"><a href="#6-开启字、阅读时间统计" class="headerlink" title="6.开启字、阅读时间统计"></a>6.开启字、阅读时间统计</h1><pre><code>直接修改_conf.yml文件，开启word_count，read-count；closed
-</code></pre><h1 id="7-开启友情链接，修改主题配置"><a href="#7-开启友情链接，修改主题配置" class="headerlink" title="7.开启友情链接，修改主题配置"></a>7.开启友情链接，修改主题配置</h1><h1 id="8-开启访客统计，可以直接配置key-id后，通过主题下的visitors开启"><a href="#8-开启访客统计，可以直接配置key-id后，通过主题下的visitors开启" class="headerlink" title="8.开启访客统计，可以直接配置key id后，通过主题下的visitors开启"></a>8.开启访客统计，可以直接配置key id后，通过主题下的visitors开启</h1><h1 id="9-修改css样式，让友情链接靠左"><a href="#9-修改css样式，让友情链接靠左" class="headerlink" title="9.修改css样式，让友情链接靠左"></a>9.修改css样式，让友情链接靠左</h1><h1 id="10-修改页面宽度，太窄"><a href="#10-修改页面宽度，太窄" class="headerlink" title="10. 修改页面宽度，太窄"></a>10. 修改页面宽度，太窄</h1><p><a href="https://blog.csdn.net/csdnSR/article/details/78300820" target="_blank" rel="noopener">cankao 宽</a><br><a href="https://sluggishpj.github.io/blog/2017/10/14/%E4%BF%AE%E6%94%B9NexTPisces%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F/" target="_blank" rel="noopener">cankao used</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">修改layout。style 加：</span><br><span class="line">// 以下为新增代码！！</span><br><span class="line">// 白色区域的最大宽度</span><br><span class="line">$white_max_width = 1200px</span><br><span class="line">    header&#123; width: 90% !important; &#125; </span><br><span class="line">header.post-header &#123; </span><br><span class="line">  width: auto !important; </span><br><span class="line">&#125; </span><br><span class="line">.container .main-inner &#123; width: 90%; &#125; </span><br><span class="line">.content-wrap &#123; width: calc(100% - 260px); &#125; </span><br><span class="line">.header &#123; </span><br><span class="line">  +tablet() &#123; </span><br><span class="line">    width: auto !important; </span><br><span class="line">    &#125; </span><br><span class="line">    +mobile() &#123; </span><br><span class="line">    width: auto !important; &#125; &#125; </span><br><span class="line"></span><br><span class="line">.container .main-inner &#123; </span><br><span class="line">  +tablet() &#123; width: auto !important; &#125; </span><br><span class="line">  +mobile() &#123; width: auto !important; &#125; &#125; </span><br><span class="line"></span><br><span class="line">.content-wrap &#123; </span><br><span class="line">  +tablet() &#123; width: 100% !important; &#125; </span><br><span class="line">  +mobile() &#123; width: 100% !important; &#125; </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/home_m/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lufeel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lufeel Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/11/home_m/" itemprop="url">lear3.md</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-11T02:13:46+08:00">
-                2018-11-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/11/home_m/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/11/home_m/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/11/11/home_m/" class="leancloud_visitors" data-flag-title="lear3.md">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-GitHub编程书籍"><a href="#1-GitHub编程书籍" class="headerlink" title="1.GitHub编程书籍"></a>1.GitHub编程书籍</h3><p><a href="https://github.com/justjavac/free-programming-books-zh_CN" target="_blank" rel="noopener">GitHub编程书籍</a></p>
-<h3 id="2-网址"><a href="#2-网址" class="headerlink" title="2.网址"></a>2.网址</h3><p><a href=""></a></p>
-<html><br><body><br><a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener"> csnotes </a><br><a href="https://lobste.rs/" target="_blank" rel="noopener"> lobste </a><br><a href="https://github.com/xitu/gold-miner" target="_blank" rel="noopener">掘金计划，翻译较多</a><br><a href="https://github.com/donnemartin/system-design-primer/blob/master/README-zh-Hans.md" target="_blank" rel="noopener"> 系统设计入门</a><br><hr><br><a href="https://github.com/developer-learning/night-reading-go" target="_blank" rel="noopener"> go夜读 </a><br><br><br><a href="https://github.com/robinhood/faust" target="_blank" rel="noopener"> faust </a><br><br><br><hr><br><h1> ——–db forum—————-</h1><br><a href="http://vldb2018.lncc.br/index.html" target="_blank" rel="noopener"> VALDB </a><br><br>### 3.kubernetes<br><a href="http://cizixs.com/2018/06/25/kubernetes-resource-management/" target="_blank" rel="noopener">简介</a><br><br>### require<br><blockquote cite="http://www.worldwildlife.org/who/index.html"><br>要求：<br><br>    扎实的编程能力，熟悉 C/C++/Go/Rust/Python 一种编程语言；<br>    对容器技术有较深入的了解；<br>    熟悉 Swarm/Mesos/Kubernetes 等容器编排系统中至少一种；<br>    熟练使用 Linux；<br>    具备大型分布式系统监控、分析和故障排查等相关经验；<br>    有国内外公有云平台使用和运维经验；<br>    良好的沟通能力和技巧。<br><br>加分项：<br><br>    熟悉 Ansible/Saltstack 等自动化部署工具；<br>    为 Docker/Kubernetes 贡献过代码；<br>    熟悉 BGP、Overlay 网络。<br></blockquote><br><blockquote cite="https://job.alibaba.com/zhaopin/position_detail.htm?spm=5176.195180.1044609.apply-GP058829.43371387fxwpjQ&positionCode=%20%20%20%20%20%20%20%20%20%20GP058829&acjoinus=AC0010"><br>阿里云事业群-云原生计算平台研发专家-弹性计算<br>参与阿里云底层基础设施相关云原生(cloud native)计算平台系统的设计、开发与实现。<br>1. 负责云计算底层平台系统的设计及核心模块开发工作<br>2. 熟悉OpenStack，Kubernetes，Docker 等主要开源社区发展趋势，能够紧密跟踪掌握云计算相关生态内的新技术与实现<br>3. 能充分理解产品需求，具有一定钻研能力，能解决各种技术难题；<br>4. 与团队成员分享经验和新技术，帮助团队成长。<br>岗位要求：<br><br>1. Linux 环境下的 C/C++/Go/Python/Shell 语言研发经验，且以 C/C++/Go 语言为主；<br>2. 熟悉 Docker/CRI/OCI 等容器相关生态和技术；<br>3. 熟悉 OpenStack，Kubernetes 等调度平台架构及技术；<br>4. 熟悉 KVM/XEN 等虚拟化相关技术；<br>5. 有 CNCF 社区相关贡献者优先录用。<br></blockquote><br></body><br></html>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/02_00.hexo_step/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lufeel">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lufeel Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/11/02_00.hexo_step/" itemprop="url">hexo-step-by-step</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-11T02:09:05+08:00">
-                2018-11-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/11/02_00.hexo_step/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/11/02_00.hexo_step/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/11/11/02_00.hexo_step/" class="leancloud_visitors" data-flag-title="hexo-step-by-step">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="1-Create-a-new-post"><a href="#1-Create-a-new-post" class="headerlink" title="1.Create a new post"></a>1.Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"test.md"</span></span><br><span class="line">$ hexo new page 生成主页的page，比如about categories</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="2-Run-server"><a href="#2-Run-server" class="headerlink" title="2.Run server"></a>2.Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s/server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="3-Generate-static-files"><a href="#3-Generate-static-files" class="headerlink" title="3.Generate static files"></a>3.Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g/generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="4-Deploy-to-remote-sites"><a href="#4-Deploy-to-remote-sites" class="headerlink" title="4.Deploy to remote sites"></a>4.Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d/deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/11/02_00.hexo_step/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1800,7 +1742,7 @@ docker logs --tail - -f  -t name
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1901,7 +1843,7 @@ docker logs --tail - -f  -t name
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
