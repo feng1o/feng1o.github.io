@@ -75,11 +75,12 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 ## theme: landscape
-theme: next 
+## theme: next 
+theme: butterfly 
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: http://github.com/feng1o/feng1o.github.io.git 
+  repo: git@github.com:feng1o/feng1o.github.io.git 
   branch: master
