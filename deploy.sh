@@ -29,3 +29,7 @@ git push origin master -f
 cd ..
 
 rm -rf public
+
+git add .
+git commit -m "$msg add src to dev"
+git push 
