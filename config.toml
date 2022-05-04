@@ -99,7 +99,7 @@ enableEmoji = true
       # App icon config
       [languages.en.params.app]
         # optional site title override for the app when added to an iOS home screen or Android launcher
-        title = "LoveIt"
+        title = "Feng"
         # whether to omit favicon resource links
         noFavicon = false
         # modern SVG favicon to use in place of older style .png and .ico files
@@ -345,7 +345,7 @@ enableEmoji = true
           # 主页显示的网站标题 (支持 HTML 格式)
           title = ""
           # 主页显示的网站副标题
-          subtitle = "一个简洁、优雅且高效的 Hugo 主题"
+          subtitle = "丨灬丿灬人生智慧就是一种心灵的感悟，是一种美感体验的豁然洞见..."
           # 是否为副标题显示打字机动画
           typeit = true
           # 是否显示社交账号
@@ -461,7 +461,7 @@ enableEmoji = true
       logo = ""
       # title name
       # 标题名称
-      name = "LoveIt"
+      name = "Feng"
       # you can add extra information before the name (HTML format is supported), such as icons
       # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
       pre = "<i class='far fa-kiss-wink-heart fa-fw'></i>"
@@ -671,8 +671,8 @@ enableEmoji = true
       # Valine 评论系统设置 (https://github.com/xCss/Valine)
       [params.page.comment.valine]
         enable = true
-        appId = "QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI"
-        appKey = "WBmoGyJtbqUswvfLh6L8iEBr"
+        appId = "IoQ00zwYSpVEgjU5OnisyQsV-gzGzoHsz"
+        appKey = "Kdv7k2AFSbrrC6eyB1B3oeyF"
         placeholder = ""
         avatar = "mp"
         meta= ""
@@ -682,7 +682,7 @@ enableEmoji = true
         recordIP = true
         highlight = true
         enableQQ = false
-        serverURLs = "https://leancloud.hugoloveit.com"
+        serverURLs = "https://feng1o.github.io"
         # emoji data file name, default is "google.yml"
         # ("apple.yml", "google.yml", "facebook.yml", "twitter.yml")
         # located in "themes/LoveIt/assets/data/emoji/" directory

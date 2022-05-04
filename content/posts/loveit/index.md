@@ -1,5 +1,5 @@
 ---
-weight: 1
+weight: 3
 title: "主题文档 - 使用LoveIt"
 date: 2020-03-06T21:40:32+08:00
 lastmod: 2020-03-06T21:40:32+08:00
@@ -10,6 +10,13 @@ description: "Hugo - **LoveIt** 使用."
 resources:
 - name: "featured-image"
   src: "featured-image.jpg"
+
+#featuredImage: images/lighthouse-small.jpg
+#featuredImagePreview: /featuredImage/excel-featured-image.jpg
+#featuredImage: /featuredImage/excel-featured-image.jpg
+#resources:
+#- name: "featured-image"
+#  src: "./apple-touch-icon.png"  
 
 tags: ["LoveIt", "主题"]
 categories: ["LoveIt"]
@@ -137,4 +144,25 @@ draft开启,product可以开启comment等
 ### 13.hugo获取资源,比如imag
 ![image res获取位置](hugo_image_res.png "<a href=https://gohugo.io/content-management/image-processing/#image-resources>官网链接</a>")
 `必须index开头的md才能获取当前目录的文件,否则应该放在全局 /asserts/images/下; 不过前置参数resource.name .image方式不能获取`
+> posts下一个目录:如果有index.md只能有一个生效,父dir也不行 todo
+`页面资源仅仅可由页面包可以访问， 页面包就是一个根部包含index.md, 或者 _index.md文件的目录。资源仅仅与它们所属的最低层级的页面绑定。对于不包含index.md 的目录不附属任何资源。` [参考](https://www.andbible.com/post/hugo-content-management-page-resources/)
+```
+.
+├── db
+│   ├── index2.md --->如果是index,则当前目录及子目录只能渲染一个html
+│   ├── libc.jpg
+│   └── sqlite
+│       ├── libc.jpg
+│       ├── sqite2
+│       │   └── index.md  ---> index.md理论上只应该放在最低层目录,且只有一个md
+│       ├── x.md
+│       └── xx.md
+├── loveit
+│   ├── featured-image.jpg
+│   ├── hugo_image_res.png
+│   └── index.md 
+└── tpl.md
+```
+
+
 
