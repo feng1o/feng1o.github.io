@@ -162,6 +162,14 @@ draft开启,product可以开启comment等
 │   ├── hugo_image_res.png
 │   └── index.md 
 └── tpl.md
+
+```
+
+### 14.comment
+```
+    1.https://valine.js.org/quickstart.html 注册，然后F.； 会生成appid，key
+    2.修改 vi themes/next/_config.yml ； 修改valine 开启true，把key加上
+    3.最后！记得在Leancloud -> 设置 -> 安全中心 -> Web 安全域名 把你的域名加进去
 ```
 
 
