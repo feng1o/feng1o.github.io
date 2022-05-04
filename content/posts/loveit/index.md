@@ -171,8 +171,15 @@ draft开启,product可以开启comment等
     2.修改 vi themes/next/_config.yml ； 修改valine 开启true，把key加上
     3.最后！记得在Leancloud -> 设置 -> 安全中心 -> Web 安全域名 把你的域名加进去
 ```
+### 15.seo
+```
+google:
+    https://search.google.com/search-console/sitemaps?resource_id=https%3A%2F%2Ffeng1o.github.io%2F 将一个html放在static下,然后加入sitemap.xml
 
-### 15.todo
+baidu:
+    
+```
+### 16.todo
 ```
     a.搜索
     b.
