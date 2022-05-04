@@ -34,7 +34,7 @@ git push origin master -f
 # Come Back up to the Project Root
 cd ..
 
-#rm -rf public
+rm -rf public
 
 # add src to dev branch
 git add .
