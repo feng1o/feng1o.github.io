@@ -180,6 +180,9 @@ google:
 baidu:
    同样支持html,和sitemap提交 
 ```
+> add 使用域名绑定，需要在域名管理和github的仓库设置里加入域名
+> 谷歌加新域名，sitemap
+> 百度因为无法爬取github，顾需要使用[vercel](https://vercel.com/feng1o/feng1o-github-io/settings/domains) [参考](https://zhuanlan.zhihu.com/p/111773896)
 ### 16.todo
 ```
     a.搜索
