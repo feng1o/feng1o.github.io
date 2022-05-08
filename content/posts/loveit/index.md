@@ -171,6 +171,12 @@ draft开启,product可以开启comment等
     2.修改 vi themes/next/_config.yml ； 修改valine 开启true，把key加上
     3.最后！记得在Leancloud -> 设置 -> 安全中心 -> Web 安全域名 把你的域名加进去
 ```
+```
+    Tip: 
+      购买域名后：'Code 403: 访问被API域名白名单拒绝，请检查的安全域名设置.
+      最后一步，web安全域名加入，录入的api访问提示未备案可以忽略
+      web安全域名：看浏览器显示的是什么加什么:比如https://www.feng1o.com； 没www不行
+```
 ### 15.seo
 [参考](https://lx34r.top/2020/04/03/blog_searchengineoptimizing/)
 ```
@@ -178,11 +184,18 @@ google:
     https://search.google.com/search-console/sitemaps?resource_id=https%3A%2F%2Ffeng1o.github.io%2F 将一个html放在static下,然后加入sitemap.xml
 
 baidu:
-   同样支持html,和sitemap提交 
+   同样支持html,和sitemap提交(不可嵌套sitemap的xml，提交最低层的即可) 
 ```
+
 > add 使用域名绑定，需要在域名管理和github的仓库设置里加入域名 [参考](https://segmentfault.com/a/1190000011203711)
 > 谷歌加新域名，sitemap
 > 百度因为无法爬取github，顾需要使用[vercel](https://vercel.com/feng1o/feng1o-github-io/settings/domains) [参考](https://zhuanlan.zhihu.com/p/111773896)
+
+> Tip:
+>   使用域名绑定，需要在域名管理和github的仓库设置里加入域名
+>   谷歌加新域名，sitemap
+>   百度因为无法爬取github，顾需要使用[vercel](https://vercel.com/feng1o/feng1o-github-io/settings/domains) [参考](https://zhuanlan.zhihu.com/p/111773896)
+ 
 ### 16.todo
 ```
     a.搜索
