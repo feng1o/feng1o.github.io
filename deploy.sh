@@ -18,7 +18,7 @@ cd public
 
 mkdir feng1o_domain 
 cp zh-cn/sitemap.xml feng1o_domain/sitemap.xml
-sed -i 's#feng1o.github.io#feng1o.com#'  feng1o_domain/sitemap.xml
+sed -i 's/feng1o.github.io/feng1o.com/'  feng1o_domain/sitemap.xml
 
 git init
 git remote add origin git@github.com:feng1o/feng1o.github.io.git
