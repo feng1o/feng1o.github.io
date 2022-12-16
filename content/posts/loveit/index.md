@@ -196,10 +196,12 @@ baidu:
 >   谷歌加新域名，sitemap
 >   百度因为无法爬取github，顾需要使用[vercel](https://vercel.com/feng1o/feng1o-github-io/settings/domains) [参考](https://zhuanlan.zhihu.com/p/111773896)
  
-### 16.todo
+### 16.更新err
 ```
-    a.搜索
-    b.
+    a.new pc:
+        failed to extract shortcode: template for shortcode "admonition" not found  --> theme/Loveit下的主题需要重新clone下
+    b.hugo server #debug
+    c.src doc in branch dev； and gen source in publich and then push to master branch。
 ```
 
 
