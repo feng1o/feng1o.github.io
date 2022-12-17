@@ -8,6 +8,9 @@
 EOF
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
+# create a new page: 
+# hugo new posts/dir/x.md
+
 # Build the project.
 # hugo # if using a theme, replace with `hugo -t <YOURTHEME>`
 # hugo serve --disableFastRender
