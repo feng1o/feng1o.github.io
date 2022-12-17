@@ -165,11 +165,11 @@ draft开启,product可以开启comment等
 
 ```
 
-### 14.comment
+### 14.comment (未备案提示忽略)
 ```
     1.https://valine.js.org/quickstart.html 注册，然后F.； 会生成appid，key
     2.修改 vi themes/next/_config.yml ； 修改valine 开启true，把key加上
-    3.最后！记得在Leancloud -> 设置 -> 安全中心 -> Web 安全域名 把你的域名加进去(域名可能需要配置cname，按提示配置)
+    3.最后！记得在Leancloud -> 设置 -> 安全中心 -> Web 安全域名 把你的域名加进去(域名按提示配置cname)
 ```
 ```
     Tip: 
@@ -185,6 +185,7 @@ google:
 
 baidu:
    同样支持html,和sitemap提交(不可嵌套sitemap的xml，提交最低层的即可) 
+   用的这个：https://feng1o.com/feng1o_domain/sitemap.xml
 ```
 
 > add 使用域名绑定，需要在域名管理和github的仓库设置里加入域名 [参考](https://segmentfault.com/a/1190000011203711)
