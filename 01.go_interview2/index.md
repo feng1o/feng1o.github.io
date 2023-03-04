@@ -287,11 +287,11 @@ toc:
 ---
 
 <style>
-h7, h6,h5,h4,h3,h2,h1 {
+h7,h6,h5,h4,h3,h2,h1 {
 background : lightgray;
 }
 
-h3:hover {
+h7,h6,h5,h4,h3,h2,h1:hover {
 color : red;
 }
 
