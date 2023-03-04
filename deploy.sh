@@ -28,6 +28,7 @@ fi
 
 # Go To Public folder
 cp -r public/* ${base_dir}/public/
+echo "${base_dir}/public"
 cd ${base_dir}/public
 
 mkdir feng1o_domain 
@@ -36,6 +37,7 @@ cp ${dir}/zh-cn/index.html feng1o_domain/index.html
 sed -i  's/feng1o.github.io/feng1o.com/'  feng1o_domain/sitemap.xml
 sed -i  's/feng1o.github.io/feng1o.com/'  feng1o_domain/index.html
 
+pwd
 git init
 git remote add origin git@github.com:feng1o/feng1o.github.io.git
 # Add changes to git.
