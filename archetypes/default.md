@@ -30,7 +30,7 @@ h6,h5,h4,h3,h2,h1 {
 background : lightgray;
 }
 
-h6,h5,h4,h3,h2,h1:hover {
+h6:hover, h5:hover, h4:hover, h3:hover, h2:hover, h1:hover  {
 color : red;
 }
 
