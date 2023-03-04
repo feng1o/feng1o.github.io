@@ -31,7 +31,7 @@ Hugo - <strong>LoveIt</strong> 使用.</p>]]></description>
     <guid>https://feng1o.github.io/01.go_interview2/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/go.png" referrerpolicy="no-referrer">
-            </div>h7,h6,h5,h4,h3,h2,h1 { background : lightgray; } h7,h6,h5,h4,h3,h2,h1:hover { color : red; } map [[2023-02-20 Mon]] # 最主要的数据结构有两种：哈希查找表（Hash table）、搜索树（Search tree） avl或rb树。 Go 语]]></description>
+            </div>h7,h6,h5,h4,h3,h2,h1 { background : lightgray; } h6:hover, h5:hover, h4:hover, h3:hover, h2:hover, h1:hover { color : red; } map [[2023-02-20 Mon]] # 最主要的数据结构有两种：哈希查找表（Hash table）、搜索树（Search tree） avl或r]]></description>
 </item>
 <item>
     <title>01.brpc基础</title>
