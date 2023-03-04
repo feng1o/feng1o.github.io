@@ -147,6 +147,11 @@ draft开启,product可以开启comment等
 > posts下一个目录:如果有index.md只能有一个生效,父dir也不行 todo
 `页面资源仅仅可由页面包可以访问， 页面包就是一个根部包含index.md, 或者 _index.md文件的目录。资源仅仅与它们所属的最低层级的页面绑定。对于不包含index.md 的目录不附属任何资源。` [参考](https://www.andbible.com/post/hugo-content-management-page-resources/)
 ```
+比如:   ![img](/images/huisu.png)
+{{ $image := resources.Get "/images/huisu.png" }}
+{{< image src="/images/huisu.png" caption="Lighthouse (`image`)" src_s="/images/huisu.png" src_l="/images/huisu.png" >}}
+```
+```
 .
 ├── db
 │   ├── index2.md --->如果是index,则当前目录及子目录只能渲染一个html
@@ -170,6 +175,8 @@ draft开启,product可以开启comment等
     1.https://valine.js.org/quickstart.html 注册，然后F.； 会生成appid，key
     2.修改 vi themes/next/_config.yml ； 修改valine 开启true，把key加上
     3.最后！记得在Leancloud -> 设置 -> 安全中心 -> Web 安全域名 把你的域名加进去(域名按提示配置cname)
+    4.可设置图像,到valine搜Avtar有详细说明,在评论时指定对应邮箱会自动更新图像
+    5.valine不需要在域名里添加任何dns信息
 ```
 ```
     Tip: 
@@ -196,13 +203,19 @@ baidu:
 >   使用域名绑定，需要在域名管理和github的仓库设置里加入域名
 >   谷歌加新域名，sitemap
 >   百度因为无法爬取github，顾需要使用[vercel](https://vercel.com/feng1o/feng1o-github-io/settings/domains) [参考](https://zhuanlan.zhihu.com/p/111773896)
- 
+
 ### 16.更新err
 ```
     a.new pc:
         failed to extract shortcode: template for shortcode "admonition" not found  --> theme/Loveit下的主题需要重新clone下
     b.hugo server #debug
     c.src doc in branch dev； and gen source in publich and then push to master branch。
+```
+
+### 17.记录
+```
+    a.archetypes/default.md     默认的文章模板, 可定制
+    b.
 ```
 
 

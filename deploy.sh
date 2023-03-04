@@ -1,5 +1,5 @@
 #!/bin/bash
-
+local_do=${1-:"n"}
 <<EOF
     注意: 
     1.md文件是index或_inde.md,如需使用当前的resource加载image,比如前置参数的resource.name src信息
@@ -19,12 +19,20 @@ git submodule update
 
 hugo
 
+dir=$(pwd)
+if [[ "$local_do" == "y" || "$local_do" == "Y" ]];then
+    base_dir="."
+else
+    base_dir=$(dirname $(pwd))
+fi
+
 # Go To Public folder
-cd public
+cp -r public/* ${base_dir}/public/
+cd ${base_dir}/public
 
 mkdir feng1o_domain 
-cp zh-cn/sitemap.xml feng1o_domain/sitemap.xml
-cp zh-cn/index.html feng1o_domain/index.html
+cp ${dir}/zh-cn/sitemap.xml feng1o_domain/sitemap.xml
+cp ${dir}/zh-cn/index.html feng1o_domain/index.html
 sed -i  's/feng1o.github.io/feng1o.com/'  feng1o_domain/sitemap.xml
 sed -i  's/feng1o.github.io/feng1o.com/'  feng1o_domain/index.html
 
@@ -44,9 +52,9 @@ git commit -m "$msg"
 git push origin master -f
 
 # Come Back up to the Project Root
-cd ..
+cd ${dir}
 
-rm -rf public
+#rm -rf ${dir}public
 
 # add src to dev branch
 git add .

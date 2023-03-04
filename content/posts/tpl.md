@@ -1,4 +1,5 @@
 ---
+# 越小权重越高,首页在前
 weight: 100
 title: "tpl - md模板文件"
 date: 2020-03-06T21:40:32+08:00
@@ -8,6 +9,7 @@ author: "feng1o"
 authorLink: "https://feng1o.github.io"
 description: "Hugo - **模板** ."
 
+# 图片
 featuredImage: images/tpl-featured.png
 #featuredImagePreview: /featuredImage/excel-featured-image.jpg
 
@@ -18,7 +20,9 @@ featuredImage: images/tpl-featured.png
 #- name: "/images/featured-image"
 #  src: "/images/featured-image.jpg" #这个不行
 
+# tag只是方便查找
 tags: ["tpl", "模板"]
+# 分类更详细,会根据分类分组文章
 categories: ["tpl"]
 
 lightgallery: true 
