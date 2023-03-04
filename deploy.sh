@@ -39,11 +39,13 @@ sed -i  's/feng1o.github.io/feng1o.com/'  feng1o_domain/sitemap.xml
 sed -i  's/feng1o.github.io/feng1o.com/'  feng1o_domain/index.html
 
 pwd
+read -p "ok" ok
 git init
 git remote add origin git@github.com:feng1o/feng1o.github.io.git
 # Add changes to git.
 git add .
 
+read -p "ok" ok
 # Commit changes.
 msg="rebuilding site `date`"
 if [ $# -eq 1 ]
