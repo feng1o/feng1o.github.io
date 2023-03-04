@@ -27,6 +27,7 @@ else
 fi
 
 # Go To Public folder
+mkdir -p ${base_dir}/public/
 cp -r public/* ${base_dir}/public/
 echo "${base_dir}/public"
 cd ${base_dir}/public
