@@ -1,0 +1,110 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>feng1o的博客</title>
+        <link>https://feng1o.github.io/</link>
+        <description>feng1o的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lufeelmail@gmail.com (feng1o)</managingEditor>
+            <webMaster>lufeelmail@gmail.com (feng1o)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 04 Mar 2023 17:32:08 &#43;0800</lastBuildDate>
+            <atom:link href="https://feng1o.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>主题文档 - 使用LoveIt</title>
+    <link>https://feng1o.github.io/loveit/</link>
+    <pubDate>Fri, 06 Mar 2020 21:40:32 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/loveit/</guid>
+    <description><![CDATA[<p>#<a href="/images/Apple-Devices-Preview.png" title="Hugo 主题 LoveIt" rel="">Hugo 主题 LoveIt</a>
+Hugo - <strong>LoveIt</strong> 使用.</p>]]></description>
+</item>
+<item>
+    <title>01.回溯算法梳理</title>
+    <link>https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/</link>
+    <pubDate>Sat, 04 Mar 2023 17:32:08 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/huisu.png" referrerpolicy="no-referrer">
+            </div>#Algorithm 算法 Algorithm - 回溯 learn. h6,h5,h4,h3,h2,h1 { background : lightgray; } h6,h5,h4,h3,h2,h1:hover { color : red; } summary-backtrack-labuladong &amp;&amp; 回溯细分 id:: fa46fb8b-f417-4457-aae7-bcfacfda375d 递归回溯区别:回溯也用到递归，但是相比递归多了条件剪纸，结束条件等； 而递归就是回调自]]></description>
+</item>
+<item>
+    <title>go知识点梳理</title>
+    <link>https://feng1o.github.io/01.go_interview2/</link>
+    <pubDate>Fri, 03 Mar 2023 19:10:14 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/01.go_interview2/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/go.png" referrerpolicy="no-referrer">
+            </div>h7, h6,h5,h4,h3,h2,h1 { background : lightgray; } h3:hover { color : red; } map [[2023-02-20 Mon]] # 最主要的数据结构有两种：哈希查找表（Hash table）、搜索树（Search tree） avl或rb树。 Go]]></description>
+</item>
+<item>
+    <title>01.brpc基础</title>
+    <link>https://feng1o.github.io/01.basic/</link>
+    <pubDate>Sat, 17 Dec 2022 22:38:42 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/01.basic/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/brpc.png" referrerpolicy="no-referrer">
+            </div>1.简介 2.资料 3.过程]]></description>
+</item>
+<item>
+    <title>linux - glic升级</title>
+    <link>https://feng1o.github.io/01.glibc/</link>
+    <pubDate>Tue, 08 Mar 2022 17:40:32 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/01.glibc/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/glibc.png" referrerpolicy="no-referrer">
+            </div><p><a style="color:red;"> <strong>💥谨慎操作.</strong> </a><strong>libc.so.6: version `GLIBC_2.14&rsquo; not found</strong>.</p>]]></description>
+</item>
+<item>
+    <title>go - GMP调度器</title>
+    <link>https://feng1o.github.io/gmp1/</link>
+    <pubDate>Tue, 08 Jun 2021 21:40:32 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/gmp1/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/go-gmp.png" referrerpolicy="no-referrer">
+            </div><p><a href="https:strikefreedom.top/high-performance-implementation-of-goroutine-pool">原文:GMP分析-手撸goroutine pool</a></li>
+go - <strong>GMP调度器</strong>.</p>]]></description>
+</item>
+<item>
+    <title>db - sqlite资料</title>
+    <link>https://feng1o.github.io/path/</link>
+    <pubDate>Wed, 06 May 2020 21:40:32 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/path/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/SQLite-Logo.png" referrerpolicy="no-referrer">
+            </div><p>DB- <strong>sqlite</strong> .</p>]]></description>
+</item>
+<item>
+    <title>docker - 卷和网络</title>
+    <link>https://feng1o.github.io/03.docker-volume-new/</link>
+    <pubDate>Sun, 08 Aug 2021 17:40:32 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/03.docker-volume-new/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/docker.png" referrerpolicy="no-referrer">
+            </div><p><a style="color:red;"> <strong>基础</strong> </a><strong>docker</strong>.</p>]]></description>
+</item>
+<item>
+    <title>docker - 构建</title>
+    <link>https://feng1o.github.io/02.docker-commit/</link>
+    <pubDate>Sun, 08 Aug 2021 17:40:32 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/02.docker-commit/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/docker.png" referrerpolicy="no-referrer">
+            </div><p><a style="color:red;"> <strong>基础</strong> </a><strong>docker</strong>.</p>]]></description>
+</item>
+<item>
+    <title>docker - 第一个容器</title>
+    <link>https://feng1o.github.io/01.docker-one/</link>
+    <pubDate>Sun, 08 Aug 2021 17:40:32 &#43;0800</pubDate>
+    <author>feng1o</author>
+    <guid>https://feng1o.github.io/01.docker-one/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/docker.png" referrerpolicy="no-referrer">
+            </div><p><a style="color:red;"> <strong>基础</strong> </a><strong>docker</strong>.</p>]]></description>
+</item>
+</channel>
+</rss>

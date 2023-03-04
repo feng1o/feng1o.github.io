@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>01.回溯算法梳理 - feng1o的博客</title><meta name="Description" content="分类(algorithm) - **算法`回溯`** ."><meta property="og:title" content="01.回溯算法梳理" />
+<meta property="og:description" content="分类(algorithm) - **算法`回溯`** ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/" /><meta property="og:image" content="https://feng1o.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-04T17:32:08+08:00" />
+<meta property="article:modified_time" content="2023-03-04T17:32:08+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://feng1o.github.io/logo.png"/>
+
+<meta name="twitter:title" content="01.回溯算法梳理"/>
+<meta name="twitter:description" content="分类(algorithm) - **算法`回溯`** ."/>
+<meta name="application-name" content="feng1o">
+<meta name="apple-mobile-web-app-title" content="feng1o"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/" /><link rel="prev" href="https://feng1o.github.io/01.go_interview2/" /><link rel="next" href="https://feng1o.github.io/loveit/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "01.回溯算法梳理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/feng1o.github.io\/01.%E5%9B%9E%E6%BA%AF\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/feng1o.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "回溯, algorithm","wordcount":  697 ,
+        "url": "https:\/\/feng1o.github.io\/01.%E5%9B%9E%E6%BA%AF\/","datePublished": "2023-03-04T17:32:08+08:00","dateModified": "2023-03-04T17:32:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/feng1o.github.io\/images\/avatar.png",
+                    "width":  100 ,
+                    "height":  100 
+                }},"author": {
+                "@type": "Person",
+                "name": "feng1o"
+            },"description": "分类(algorithm) - **算法`回溯`** ."
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="feng1o的博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Feng</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/01.%E5%9B%9E%E6%BA%AF/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="feng1o的博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Feng</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/01.%E5%9B%9E%E6%BA%AF/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">01.回溯算法梳理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://feng1o.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>feng1o</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/algorithm/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>algorithm</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-04">2023-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 697 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/01.%E5%9B%9E%E6%BA%AF/" class="leancloud_visitors" data-flag-title="01.回溯算法梳理">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/huisu.png"
+        data-srcset="/images/huisu.png, /images/huisu.png 1.5x, /images/huisu.png 2x"
+        data-sizes="auto"
+        alt="/images/huisu.png"
+        title="分类(algorithm) - **算法`回溯`** ." width="931" height="840" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>#<a href="/images/Apple-Devices-Preview.png" title="algorithm  回溯" rel="">Algorithm 算法</a>
+Algorithm - <strong>回溯</strong> learn.</p>
+<style>
+h6,h5,h4,h3,h2,h1 {
+background : lightgray;
+}
+
+h6,h5,h4,h3,h2,h1:hover {
+color : red;
+}
+
+
+
+
+
+</style>
+<hr>
+<ul>
+<li>
+<p><a href="https://labuladong.github.io/algo/di-ling-zh-bfe1b/hui-su-sua-c26da/" target="_blank" rel="noopener noreffer ">summary-backtrack-labuladong</a> &amp;&amp; <a href="https://labuladong.github.io/algo/di-san-zha-24031/bao-li-sou-96f79/hui-su-sua-56e11/" target="_blank" rel="noopener noreffer ">回溯细分</a>
+id:: fa46fb8b-f417-4457-aae7-bcfacfda375d</p>
+<ul>
+<li>
+<p class="gray subw  inline_box underline"><span style="color: red;background-color: lightblue;font-weight:bold;font-size:12px;display:inline-block"> 递归回溯区别:</span>回溯也用到递归，但是相比递归多了条件剪纸，结束条件等； 而递归就是回调自身，斐波那契数列为例，不存在发现结果不对倒回去的步骤； 回溯比如一个格子里走出去，走不通了回去继续换个路劲，一般要有个状态记录走过的</p>
+id:: 9374c530-4426-441e-8048-2362e98c3b7b
+</li>
+<li>id:: 63f7088c-681a-4fae-a9f0-3712420bbe3c
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">result = []
+</span></span><span class="line"><span class="cl">def backtrack(路径, 选择列表):
+</span></span><span class="line"><span class="cl">    if 满足结束条件:  // 组合的这all都满足，入口就是空也是
+</span></span><span class="line"><span class="cl">        result.add(路径)
+</span></span><span class="line"><span class="cl">        return
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for 选择 in 选择列表:
+</span></span><span class="line"><span class="cl">		// 剪枝: 比如同元素的组合 x&gt;start nums[x]=numx[x-1] 跳过
+</span></span><span class="line"><span class="cl">        做选择
+</span></span><span class="line"><span class="cl">        backtrack(路径, 选择列表)
+</span></span><span class="line"><span class="cl">        撤销选择
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>id:: 63fc2cd5-d8c2-4e77-8486-b5713111d5bb
+#+BEGIN_QUERY
+{:title [:h5.font-bold.blue.opacity-40&quot;3. query (and BFS (and dalg (not  tpl)) )&quot;]
+:query (and &ldquo;回溯&rdquo; (and &ldquo;dalg&rdquo; (not  &ldquo;tpl&rdquo;)) )
+:result-transform (fn [result]
+(sort-by(  fn [h]
+(get h :db/id 1)  ) &gt; result))
+:breadcrumb-show?  false
+:collapsed? true
+}
+#+END_QUERY</li>
+</ul>
+</li>
+<li>
+<p>leetcode &ndash; backtrace <span class=" bg-green white  subw hblack hover"> [[2023-02-23 Thu]] </span>
+id:: 62360062-8288-4366-a172-6bcfff419cd2</p>
+</li>
+<li>
+<html><a  class="alg-2stars"       href=https://leetcode.cn/problems/subsets/description/
+<blockquote>
+<span class="width-55-hide bg-lightgray-del">
+</blockquote>
+<p>78.子集</p>
+<p><span class="hide">dalg</span><span class="hide">hot100</span>
+<span class="gray subw9"></p>
+<p>一系列问题-tip-hot100 <span class=" bg-green white  subw hblack hover"> [[2022-11-30 Wed]] </span></p>
+<p></span></span></a>  <a 
+class="indent1  subw8 blue    width-13-hide                                        " >回溯</a><a 
+class="indent1 subw8 gray    width-18-hide  underline  DarkOrchid  " >回溯</a><a 
+class="indent1 subw gray     width-3-hide  underline  red                  " >1</a></p>
+</html>
+  - <html><a  class="alg-2stars"       href=
+    https://leetcode.cn/problems/subsets/solution/hui-su-suan-fa-by-powcai-5/
+<pre><code>&gt;&lt;span class=&quot;width-55-hide bg-lightgray-del&quot;&gt;
+
+排列组合子集-汇总
+
+&lt;span class=&quot;hide&quot;&gt;dalg&lt;/span&gt;
+&lt;span class=&quot;gray subw9&quot;&gt;
+-tip-
+&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;  &lt;a 
+class=&quot;indent1  subw8 blue    width-13-hide                                        &quot; &gt;😁&lt;/a&gt;&lt;a 
+class=&quot;indent1 subw8 gray    width-18-hide  underline  DarkOrchid  &quot; &gt;😭汇总&lt;/a&gt;&lt;a 
+class=&quot;indent1 subw gray     width-3-hide  underline  red                  &quot; &gt;0&lt;/a&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>
+<ol start="77">
+<li>n内的k个数组合     组合和排列区别，在for循环处理，排列all，需要识别visited，组合需去重(start顺序去)</li>
+<li>子集II   <span class="subw8">有重复、不可复选的组合、排列问题  x=start; num<i class="far fa-check-square fa-fw" aria-hidden="true"></i> =nums[x-1]忽略</span></li>
+<li>组合和等于target   <span class="subw8">有重复、不可复选的组合、排列问题</span>  [[$red]]==组合问题和子集问题等价==  <a href="https://labuladong.github.io/algo/di-san-zha-24031/bao-li-sou-96f79/hui-su-sua-56e11/" target="_blank" rel="noopener noreffer ">参考此页</a></li>
+<li>电话号码的字幕组合 &mdash; 和无重复数字组合一样，从0号开始，扫完进入下一轮，结束就是n到了size</li>
+<li><a href="https://leetcode.cn/problems/generate-parentheses/" target="_blank" rel="noopener noreffer ">括号生成</a> 括号生成这个理解 &mdash;</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<html><a  class="alg-2stars"       href=
+<p><a href="https://leetcode.cn/problems/permutations/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/permutations/</a></p>
+<blockquote>
+<span class="width-55-hide bg-lightgray-del">
+</blockquote>
+<p>46.不同元素的全排列</p>
+<p><span class="hide">dalg</span>
+<span class="gray subw9">
+-tip-
+</span></span></a>  <a 
+class="indent1  subw8 blue    width-13-hide                                        " >回溯</a><a 
+class="indent1 subw8 gray    width-18-hide  underline  DarkOrchid  " >和子集比！</a><a 
+class="indent1 subw gray     width-3-hide  underline  red                  " >1</a></p>
+</html>
+  - 47.  有相同元素的全排列
+</li>
+<li>
+<html><a  class="alg-2stars"       href=
+<p><a href="https://leetcode.cn/problems/n-queens/" target="_blank" rel="noopener noreffer ">https://leetcode.cn/problems/n-queens/</a></p>
+<blockquote>
+<span class="width-55-hide bg-lightgray-del">
+</blockquote>
+<p>5.n皇后问题</p>
+<p><span class="hide">dalg</span>
+<span class="gray subw9">
+-tip-
+</span></span></a>  <a 
+class="indent1  subw8 blue    width-13-hide                                        " >回溯</a><a 
+class="indent1 subw8 gray    width-18-hide  underline  DarkOrchid  " >回溯对比</a><a 
+class="indent1 subw gray     width-3-hide  underline  red                  " >0</a></p>
+</html>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-03-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/01.%E5%9B%9E%E6%BA%AF/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/" data-title="01.回溯算法梳理" data-hashtags="回溯,algorithm"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/" data-hashtag="回溯"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/" data-title="01.回溯算法梳理"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/" data-title="01.回溯算法梳理"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://feng1o.github.io/01.%E5%9B%9E%E6%BA%AF/" data-title="01.回溯算法梳理" data-image="images/huisu.png" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%9B%9E%E6%BA%AF/">回溯</a>,&nbsp;<a href="/tags/algorithm/">algorithm</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/01.go_interview2/" class="prev" rel="prev" title="go知识点梳理"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>go知识点梳理</a>
+            <a href="/loveit/" class="next" rel="next" title="主题文档 - 使用LoveIt">主题文档 - 使用LoveIt<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.95.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">feng1o</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"IoQ00zwYSpVEgjU5OnisyQsV-gzGzoHsz","appKey":"Kdv7k2AFSbrrC6eyB1B3oeyF","avatar":"wavatar","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"说点什么吧...","recordIP":true,"visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
